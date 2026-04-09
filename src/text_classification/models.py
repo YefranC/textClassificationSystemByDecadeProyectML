@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+from sklearn.base import ClassifierMixin
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import LinearSVC
 
 
-def get_classifiers(random_state: int = 42):
+def get_classifiers(random_state: int = 42) -> dict[str, ClassifierMixin]:
     return {
         "naive_bayes": MultinomialNB(),
         "svm": LinearSVC(random_state=random_state),
@@ -16,4 +17,3 @@ def get_classifiers(random_state: int = 42):
             random_state=random_state,
         ),
     }
-

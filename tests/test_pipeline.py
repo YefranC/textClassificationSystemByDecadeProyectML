@@ -27,6 +27,9 @@ class TextClassificationPipelineTests(unittest.TestCase):
 
     def test_preprocess_text(self):
         self.assertEqual(preprocess_text("Hello,   WORLD!!!"), "hello world")
+        self.assertEqual(preprocess_text(""), "")
+        self.assertEqual(preprocess_text("$$$!!!"), "")
+        self.assertEqual(preprocess_text("Track 2024 Remix"), "track 2024 remix")
 
     def test_feature_extraction_shapes(self):
         texts = ["old school tunes", "viral social media"]
@@ -54,4 +57,3 @@ class TextClassificationPipelineTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
