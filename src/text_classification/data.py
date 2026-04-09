@@ -6,7 +6,11 @@ import pandas as pd
 
 
 def generate_synthetic_dataset(samples_per_decade: int = 50) -> pd.DataFrame:
-    """Generate a small synthetic text dataset labeled by decade."""
+    """Generate a small synthetic text dataset labeled by decade.
+
+    Note: base templates are intentionally compact and are cycled when
+    samples_per_decade exceeds template count for a label.
+    """
     templates = {
         "1980s": [
             "arcade neon nights and cassette mixtapes",
@@ -48,5 +52,4 @@ def load_dataset(path: str | Path | None = None, samples_per_decade: int = 50) -
     required_columns = {"text", "label"}
     if not required_columns.issubset(data.columns):
         raise ValueError("Dataset must contain 'text' and 'label' columns.")
-    return data[list(required_columns)]
-
+    return data[["text", "label"]]

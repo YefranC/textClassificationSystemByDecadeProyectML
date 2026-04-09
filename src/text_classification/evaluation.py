@@ -18,5 +18,7 @@ def evaluate_models(classifiers, x_train, y_train, x_test, y_test) -> pd.DataFra
                 "f1_macro": f1_score(y_test, predictions, average="macro"),
             }
         )
-    return pd.DataFrame(rows).sort_values(by=["f1_macro", "accuracy"], ascending=False).reset_index(drop=True)
-
+    results = pd.DataFrame(rows)
+    results = results.sort_values(by=["f1_macro", "accuracy"], ascending=False)
+    results = results.reset_index(drop=True)
+    return results
